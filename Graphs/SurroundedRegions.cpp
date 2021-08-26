@@ -1,9 +1,9 @@
 class Solution
 {
 public:
-    void solve(vector<vector<char>> &board)
+    void solve(vector<vector<char>> &grid)
     {
-        int n = board.size(), m = board[0].size();
+        int n = grid.size(), m = grid[0].size();
         int dirs[] = {0, 1, 0, -1, 0};
         auto inside = [&](int i, int j)
         {
@@ -12,24 +12,24 @@ public:
         queue<int> q;
         for (int i = 0; i < m; ++i)
         {
-            if (board[0][i] == 'O') q.push(i);
-            if (board[n - 1][i] == 'O') q.push((n - 1) * m + i);
+            if (grid[0][i] == 'O') q.push(i);
+            if (grid[n - 1][i] == 'O') q.push((n - 1) * m + i);
         }
         for (int i = 0; i < n; ++i)
         {
-            if (board[i][0] == 'O') q.push(i * m);
-            if (board[i][m - 1] == 'O') q.push(i * m + m - 1);
+            if (grid[i][0] == 'O') q.push(i * m);
+            if (grid[i][m - 1] == 'O') q.push(i * m + m - 1);
         }
         while (q.size())
         {
             int cur = q.front();
             q.pop();
             int i = cur / m, j = cur % m;
-            board[i][j] = 'A';
+            grid[i][j] = 'A';
             for (int d = 0; d < 4; ++d)
             {
                 int ni = i + dirs[d], nj = j + dirs[d + 1];
-                if (inside(ni, nj) && board[ni][nj] == 'O')
+                if (inside(ni, nj) && grid[ni][nj] == 'O')
                     q.push(ni * m + nj);
             }
         }
@@ -37,8 +37,8 @@ public:
         {
             for (int j = 0; j < m; ++j)
             {
-                if (board[i][j] == 'O') board[i][j] = 'X';
-                if (board[i][j] == 'A') board[i][j] = 'O';
+                if (grid[i][j] == 'O') grid[i][j] = 'X';
+                if (grid[i][j] == 'A') grid[i][j] = 'O';
             }
         }
     }
