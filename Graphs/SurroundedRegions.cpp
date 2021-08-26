@@ -12,13 +12,17 @@ public:
         queue<int> q;
         for (int j = 0; j < m; ++j)
         {
-            if (grid[0][j] == 'O') q.push(j);
-            if (grid[n - 1][j] == 'O') q.push((n - 1) * m + j);
+            if (grid[0][j] == 'O')
+                q.push(j);
+            if (grid[n - 1][j] == 'O')
+                q.push((n - 1) * m + j);
         }
         for (int i = 0; i < n; ++i)
         {
-            if (grid[i][0] == 'O') q.push(i * m);
-            if (grid[i][m - 1] == 'O') q.push(i * m + m - 1);
+            if (grid[i][0] == 'O')
+                q.push(i * m);
+            if (grid[i][m - 1] == 'O')
+                q.push(i * m + m - 1);
         }
         while (q.size())
         {
@@ -37,8 +41,10 @@ public:
         {
             for (int j = 0; j < m; ++j)
             {
-                if (grid[i][j] == 'O') grid[i][j] = 'X';
-                if (grid[i][j] == 'A') grid[i][j] = 'O';
+                if (grid[i][j] == 'O')
+                    grid[i][j] = 'X';
+                if (grid[i][j] == 'A')
+                    grid[i][j] = 'O';
             }
         }
     }
