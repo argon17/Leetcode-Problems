@@ -10,10 +10,10 @@ public:
             return i >= 0 && i < n && j >= 0 && j < m;
         };
         queue<int> q;
-        for (int i = 0; i < m; ++i)
+        for (int j = 0; j < m; ++j)
         {
-            if (grid[0][i] == 'O') q.push(i);
-            if (grid[n - 1][i] == 'O') q.push((n - 1) * m + i);
+            if (grid[0][j] == 'O') q.push(j);
+            if (grid[n - 1][j] == 'O') q.push((n - 1) * m + j);
         }
         for (int i = 0; i < n; ++i)
         {
