@@ -1,30 +1,19 @@
-// very cool implementation
-class Solution
-{
+class Solution {
 public:
-    vector<int> searchRange(vector<int> &nums, int target)
-    {
-        int n = nums.size(), lo = 0, mid, hi = n;
-        int left, right;
-        while (lo < hi)
-        {
-            mid = (lo + hi) >> 1;
-            if (nums[mid] < target)
-                lo = mid + 1;
-            else
-                hi = mid;
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int left = lower_bound(nums, target);
+        int right = lower_bound(nums, target + 1) - 1;
+        if(left <= right) return {left, right};
+        return {-1, -1};
+    }
+private:
+    int lower_bound(vector<int> &nums, int target){
+        int l = 0, r = nums.size();
+        while(l < r){
+            int mid = (l + r) >> 1;
+            if(nums[mid] < target) l = mid + 1;
+            else r = mid;
         }
-        left = lo;
-        lo = left, hi = n;
-        while (lo < hi)
-        {
-            mid = (lo + hi) >> 1;
-            if (nums[mid] > target)
-                hi = mid;
-            else
-                lo = mid + 1;
-        }
-        right = lo;
-        return left == right ? vector<int>{-1, -1} : vector<int>{left, right - 1};
+        return l;
     }
 };
